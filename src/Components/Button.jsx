@@ -1,11 +1,18 @@
-import React from 'react';
+import React from "react";
 
-const Button = () => {
-  return (
-    <div>
-        
-    </div>
-  );
+const Button = ({label}) => {
+
+    const myLabel = label;
+
+    const onClickHandler = (label)=>{
+        console.log(label)
+    }
+
+    return (
+        <>
+            <button onClick={() => onClickHandler(myLabel)}>{label}</button>
+        </>
+    )
 };
 
 export default Button;
