@@ -57,11 +57,92 @@ const Calculator = () => {
             }
         }
     };
+
+    // The event handler of the operator buttons' onClick event
+    const setCurrentOperatorValue = (operator) => {
+
+        let result;
+
+        // Reset the containsDot 
+        setContainsDot(false);
+
+        // If we have an error we get back a string
+        if(typeof currentNumber !== "number"){
+            setIsNewNumber(true);
+            setFractionPow(1);
+        }
+
+        // If (operator === C ) -> reset everything to base condition
+        if( operator === "C"){
+            setCurrentOperator("");
+            setCurrentNumber(0);
+            setPrevValue(0);
+            return;
+        }
+
+        // If (operator === (√ || ^2)) -> it only operates with one number(currentNumber)
+        if(operator === "√"){
+            result = Math.sqrt(currentNumber);
+            setCurrentOperator("");
+            setCurrentNumber(result);
+            setPrevValue(result);
+            setIsNewNumber(true);
+            return;            
+        }
+
+        if(operator === "^2"){
+            result = Math.pow(currentNumber, 2);
+            setCurrentOperator("");
+            setCurrentNumber(result);
+            setPrevValue(result);
+            setIsNewNumber(true);
+            return;      
+        }
+
+        if(isNewNumber){ 
+            setCurrentOperator(operator);       
+        }
+        else{
+            if(currentOperator === ""){
+                // No previous operator, we just store this one and move current number to previous value
+                setCurrentOperator(operator);
+                setPrevValue(currentNumber);
+            }
+            else{
+                // Execute the previous operator
+                if(currentOperator === "+"){
+                    result = prevValue + currentNumber;
+                }
+                if(currentOperator === "-"){
+                    result = prevValue - currentNumber;
+                }
+                if(currentOperator === "*"){
+                    result = prevValue * currentNumber;
+                }
+                if(currentOperator === "/"){
+                    if(currentNumber === 0){
+                        result = "Error";
+                    }
+                    else{
+                        result = prevValue / currentNumber;
+                    }                    
+                }       
+                setCurrentNumber(result);
+                setPrevValue(result);
+            }
+
+            // Store the current operator but there is no further operation after "="
+            setCurrentOperator((operator !== "=") ? operator : "");
+            setIsNewNumber(true);
+            setFractionPow(1);
+        }
+    }
+
     return (
         <div className="calculator-container">
             <Screen value={currentNumber}/>
             <div className='buttons-container'>
-                <OperatorButtons />  
+                <OperatorButtons onClickHandler={setCurrentOperatorValue}/>  
                 <NumberButtons onClickHandler={setNumberValue}/>
             </div>            
         </div>
