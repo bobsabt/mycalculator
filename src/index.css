@@ -1,13 +1,175 @@
-body {
+*{
+  box-sizing: border-box;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+body{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #2965f1;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  
+  padding: 20px;
+}
+
+.calculator-container{
+  border: 2px solid black;
+  background-color: #EBECf0;
+  border-radius: 10px;
+
+  width: 100%;
+  max-width: 350px;
+  height: 100%;
+  max-height: 540px;
+  margin:auto;
+}
+.screen-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-bottom: 2px solid rgb(83, 70, 83);
+  width: 100%;
+  height: 150px;
+}
+
+.screen-content{
+  position: relative;
+
+  width: 90%;
+  height: 70%;
+
+  border: 2px solid rgb(121, 115, 121);
+  background-color: rgb(80, 194, 165);
+}
+
+.screen-content h1{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  text-align: right;
+  font-size: 40px;
+  padding: 8px;
+}
+
+button{
+  height: 60px;
+  width: 60px;
+
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+
+  background-color: gray;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button:active{
+  background-color: rgb(65, 65, 65);
+}
+
+.buttons-container{
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  
+  grid-template-areas: 
+  "clear sqrtup sqrtdown devision"
+  "seven eight nine multiple"
+  "four five six subtraction"
+  "one two three plus"
+  "dot null eq plus";
+
+  width: 100%;
+  height: 350px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.buttons-container :nth-child(1){
+  grid-area: eq;
+  background-color: green;
+}
+.buttons-container :nth-child(1):active{
+  background-color: rgb(3, 93, 3);
+}
+.buttons-container :nth-child(2){
+  grid-area: plus;
+  height: 90%;
+}
+.buttons-container :nth-child(3){
+  grid-area: subtraction;
+}
+.buttons-container :nth-child(4){
+  grid-area: multiple;
+}
+.buttons-container :nth-child(5){
+  grid-area: devision;
+}
+.buttons-container :nth-child(6){
+  grid-area: sqrtup;
+}
+.buttons-container :nth-child(7){
+  grid-area: sqrtdown;
+  padding: 0;
+}
+.buttons-container :nth-child(8){
+  grid-area: clear;
+  background-color: orange;
+}
+.buttons-container :nth-child(8):active{
+  background-color: rgb(168, 110, 3);
+}
+
+.buttons-container :nth-child(9){
+  grid-area: dot;
+}
+.buttons-container :nth-child(10){
+  grid-area: null;
+}
+.buttons-container :nth-child(11){
+  grid-area: one;
+}
+.buttons-container :nth-child(12){
+  grid-area: two;
+}
+.buttons-container :nth-child(13){
+  grid-area: three;  
+}
+.buttons-container :nth-child(14){
+  grid-area: four;
+}
+.buttons-container :nth-child(15){
+  grid-area: five;
+}
+.buttons-container :nth-child(16){
+  grid-area: six;
+}
+
+@media screen and (max-width: 340px) {
+  button{
+    height: 50px;
+    width: 50px;
+
+    font-size: 20px;
+  } 
 }

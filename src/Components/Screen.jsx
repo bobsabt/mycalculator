@@ -1,11 +1,11 @@
-import React from 'react';
-
 const Screen = () => {
     return (
-        <div>
-            
+        <div className="screen-container">
+            <div className="screen-content">    
+                
+            </div>
         </div>
-    );
+    )
 };
 
 export default Screen;
