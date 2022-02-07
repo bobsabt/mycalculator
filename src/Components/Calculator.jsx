@@ -137,10 +137,29 @@ const Calculator = () => {
             setFractionPow(1);
         }
     }
+    const formatDisplay = (displayValue) => {
+        let newValue = displayValue.toString();
+
+        // We have to handle when there are too many digits are in front of the dot, because screen value consists of 11 digits
+        // Include method works on strings
+        if (newValue.includes(".")){ 
+            // Get the index of dot          
+            const indexOfDot = newValue.indexOf(".");           
+            if(indexOfDot >= 11){
+                newValue= "Error";                      
+            }
+        }
+        else{
+            if(newValue.length >= 11){
+                newValue = "Error";       
+            }
+        }
+        return newValue;
+    }
 
     return (
         <div className="calculator-container">
-            <Screen value={currentNumber}/>
+            <Screen value={formatDisplay(currentNumber).substring(0,11)}/>
             <div className='buttons-container'>
                 <OperatorButtons onClickHandler={setCurrentOperatorValue}/>  
                 <NumberButtons onClickHandler={setNumberValue}/>
