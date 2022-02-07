@@ -1,12 +1,8 @@
 import React from "react";
 
-const Button = ({label}) => {
+const Button = ({label, onClickHandler}) => {
 
     const myLabel = label;
-
-    const onClickHandler = (label)=>{
-        console.log(label)
-    }
 
     return (
         <>
